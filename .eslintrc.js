@@ -26,6 +26,7 @@ module.exports = {
           "error",
           { devDependencies: true },
         ],
+        "import/prefer-default-export": 0,
         "@typescript-eslint/no-unused-vars": [2, { args: "none" }],
         "no-unused-expressions": "off",
         "@typescript-eslint/no-unused-expressions": 2,
@@ -102,7 +103,9 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/issues/2528#issuecomment-689369395
     "no-undef": 0,
     "no-proto": 0,
-    indent: ["error", 2],
+    indent: 0,
+    "@typescript-eslint/indent": ["error", 2],
+    "object-curly-spacing": ["error", "always"],
   },
   globals: {
     gtag: true,
