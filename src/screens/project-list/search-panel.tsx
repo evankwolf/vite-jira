@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export interface User {
   id: number;
@@ -44,6 +44,6 @@ const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
       ))}
     </select>
   </form>
-);
+)
 
-export default SearchPanel;
+export default SearchPanel

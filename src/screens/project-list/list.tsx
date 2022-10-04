@@ -1,5 +1,5 @@
-import React from "react";
-import type { User } from "./search-panel";
+import React from "react"
+import type { User } from "./search-panel"
 
 interface Project {
   id: 1;
@@ -33,6 +33,6 @@ const List = ({ list, users = [] }: ListProps) => (
       ))}
     </tbody>
   </table>
-);
+)
 
-export default List;
+export default List

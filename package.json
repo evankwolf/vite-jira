@@ -40,8 +40,7 @@
     "vite": "^3.1.0"
   },
   "lint-staged": {
-    "*.{js,css,md,ts,tsx}": "prettier --write",
-    "*.js": "eslint --cache --fix"
+    "*.{js,css,md,ts,tsx}": "eslint --fix"
   },
   "husky": {
     "hooks": {

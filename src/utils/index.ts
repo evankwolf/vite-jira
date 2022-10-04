@@ -4,14 +4,14 @@
  * @returns 处理后的对象
  */
 function cleanObject(obj: object) {
-  const res = { ...obj };
+  const res = { ...obj }
   Object.keys(res).forEach((key) => {
-    const v = obj[key];
+    const v = obj[key]
     if (!v && v !== 0) {
-      delete res[key];
+      delete res[key]
     }
-  });
-  return res;
+  })
+  return res
 }
 
-export { cleanObject };
+export { cleanObject }
