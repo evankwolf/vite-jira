@@ -13,8 +13,7 @@ import { useEffect, useState } from "react"
  * @returns 返回最终结果
  */
 
-// 后面使用泛型来规范类型
-const useDebounce = (params: unknown, ms: number = 1000): any => {
+const useDebounce = <T>(params: T, ms: number = 1000): T => {
   const [debouncedValue, setDebouncedValue] = useState(params)
   useEffect(() => {
     // 每次params变化后，设置一个定时器
