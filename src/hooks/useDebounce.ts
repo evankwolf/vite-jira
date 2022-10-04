@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 /**
  * 防抖hooks
  * 思路大概如下：
@@ -12,16 +12,18 @@ import { useEffect, useState } from "react"
  * @param {Number} ms 延迟
  * @returns 返回最终结果
  */
-const useDebounce = (params, ms = 1000) => {
-  const [debouncedValue, setDebouncedValue] = useState(params)
+
+// 后面使用泛型来规范类型
+const useDebounce = (params: unknown, ms: number = 1000): any => {
+  const [debouncedValue, setDebouncedValue] = useState(params);
   useEffect(() => {
     // 每次params变化后，设置一个定时器
-    const timer = setTimeout(() => setDebouncedValue(params), ms)
+    const timer = setTimeout(() => setDebouncedValue(params), ms);
     // useEffect中的return执行时机为上一个useEffect处理完以后
     // 这就保证了我们如果点击了两次，那么第二次点击的时候，第一个的return就执行了
-    return () => clearTimeout(timer)
-  }, [params])
-  return debouncedValue
-}
+    return () => clearTimeout(timer);
+  }, [params]);
+  return debouncedValue;
+};
 
-export default useDebounce
+export default useDebounce;
