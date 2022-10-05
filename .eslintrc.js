@@ -103,6 +103,7 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/issues/2528#issuecomment-689369395
     "no-undef": 0,
     "no-proto": 0,
+    "no-unused-vars": 1,
     indent: 0,
     "@typescript-eslint/indent": ["error", 2],
     "object-curly-spacing": ["error", "always"],

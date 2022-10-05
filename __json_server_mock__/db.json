@@ -1,4 +1,10 @@
 {
+  "accounts": [
+    {
+      "usename": "test",
+      "password": "123456"
+    }
+  ],
   "users": [
     {
       "id": 1,
