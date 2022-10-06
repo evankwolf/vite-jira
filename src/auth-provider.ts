@@ -22,7 +22,7 @@ const login = (data: {username: string, password: string}) => {
       return handleUserResponse(await res.json())
     } 
     // eslint-disable-next-line prefer-promise-reject-errors
-    return { id: -1, name: '用户不存在', token: "" }
+    return null
   })
 }
 
@@ -37,30 +37,30 @@ const register = (data: {username: string, password: string}) => {
   return fetch(`${apiUrl}/register`, params).then( async res => {
     if (res.ok) {
       console.log('成功注册!')
-      const data: User = await res.json()
-      return data
+      // const data: User = await res.json()
+      return { code: 0 }
     }
     // eslint-disable-next-line prefer-promise-reject-errors
-    return Promise.reject('注册有问题兄弟')
+    return { code: -1 }
   })
 }
 
-const logout = () => {
+const logout = async () => {
   window.localStorage.removeItem(TOKEN_KEY)
-  const params = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-  return fetch(`${apiUrl}/logout`, params).then(async res => {
-    if (res.ok) {
-      console.log('成功登出!')
-      handleUserResponse(await res.json())
-    }
-  }).catch(err => {
-    console.log('登出失败，原因是', err)
-  })
+  // const params = {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // }
+  // return fetch(`${apiUrl}/logout`, params).then(async res => {
+  //   if (res.ok) {
+  //     console.log('成功登出!')
+  //     handleUserResponse(await res.json())
+  //   }
+  // }).catch(err => {
+  //   console.log('登出失败，原因是', err)
+  // })
 }
 
 export {

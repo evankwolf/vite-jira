@@ -10,16 +10,18 @@ interface AuthForm {
 
 const AuthContext = React.createContext<{
   user: User | null,
-  login: (form: AuthForm) => Promise<void>,
-  register: (form: AuthForm) => Promise<void>,
+  login: (form: AuthForm) => Promise<User | null>,
+  register: (form: AuthForm) => Promise<{code: number}>,
   logout: (form: AuthForm) => Promise<void>,
 } | undefined>(undefined)
 AuthContext.displayName = 'AuthContext'
 
 export const AuthProvider = ({ children }: {children: ReactNode}) => {
   const [user, setUser] = useState<User | null>(null)
-  const login = (form: AuthForm) => auth.login(form).then(user => setUser(user))
-  const register = (form: AuthForm) => auth.register(form).then(user => setUser(user))
+  const login = (form: AuthForm) => auth.login(form).then(user => {
+    setUser(user); return user
+  })
+  const register = (form: AuthForm) => auth.register(form).then(res => res)
   const logout = () => auth.logout().then(() => setUser(null))
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values

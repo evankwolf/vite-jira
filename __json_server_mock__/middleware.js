@@ -39,7 +39,9 @@ module.exports = (req, res, next) => {
   if (req.method === 'POST') {
     if (req.path === '/login') return handleLogin(req, res)
     if (req.path === '/register') return handleRegister(req, res)
+    handleMismatch(req, res)
   }
-  handleMismatch(req, res)
-  // next() //如果这里使用了next()，会报Cannot set headers after they are sent to the client的错误
+  if (req.method === 'GET') {
+    next() // 如果POST里使用了next()，会报Cannot set headers after they are sent to the client的错误
+  }
 }
