@@ -1,7 +1,9 @@
 // import type { FormEvent } from 'react'
 import React from 'react'
+import { useAuth } from '../../context/auth-context'
 
 const Login = () => {
+  const { login, user } = useAuth()
   const apiUrl = import.meta.env.VITE_APP_API_URL
   // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
   //   event.preventDefault() // 防止submit之后导致页面跳转
@@ -25,7 +27,7 @@ const Login = () => {
   //   })
   // }
 
-  const handleLogin = () => {
+  const _handleLogin = () => {
     const username = (document.querySelector('#username') as HTMLInputElement)!.value
     const password = (document.querySelector('#password') as HTMLInputElement)!.value
     const params = {
@@ -42,6 +44,12 @@ const Login = () => {
     }).catch(err => {
       console.log('登录失败，原因是', err)
     })
+  }
+
+  const handleLogin = () => {
+    const username = (document.querySelector('#username') as HTMLInputElement)!.value
+    const password = (document.querySelector('#password') as HTMLInputElement)!.value
+    login({ username, password })
   }
 
   const handleRegister = () => {
@@ -73,6 +81,9 @@ const Login = () => {
 
   return (
     <form>
+      {
+        user && <div>登录成功，用户名： {user.name}</div>
+      }
       <div>
         <label htmlFor='username'>用户名
           <input id='username' type="text" />

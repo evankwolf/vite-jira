@@ -27,7 +27,7 @@ module.exports = {
           { devDependencies: true },
         ],
         "import/prefer-default-export": 0,
-        "@typescript-eslint/no-unused-vars": [2, { args: "none" }],
+        "@typescript-eslint/no-unused-vars": [1],
         "no-unused-expressions": "off",
         "@typescript-eslint/no-unused-expressions": 2,
         "@typescript-eslint/consistent-type-imports": 2,
@@ -60,6 +60,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": 2, // Checks rules of Hooks
     "react/function-component-definition": 0,
     "react/no-unused-class-component-methods": 0,
+    "react/no-children-prop": 0,
     "import/extensions": 0,
     "import/no-cycle": 0,
     "import/no-extraneous-dependencies": [
@@ -106,6 +107,7 @@ module.exports = {
     "no-unused-vars": 1,
     indent: 0,
     "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-unused-vars": 1,
     "object-curly-spacing": ["error", "always"],
   },
   globals: {

@@ -1,7 +1,7 @@
 {
   "accounts": [
     {
-      "usename": "test",
+      "username": "test",
       "password": "123456"
     }
   ],
@@ -21,6 +21,10 @@
     {
       "id": 4,
       "name": "王文静"
+    },
+    {
+      "id": 5,
+      "name": "test"
     }
   ],
   "projects": [
