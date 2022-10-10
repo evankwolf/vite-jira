@@ -2,7 +2,7 @@ import type { User } from "./screens/project-list/search-panel"
 
 const TOKEN_KEY = '__auth_provider_token__'
 const apiUrl = import.meta.env.VITE_APP_API_URL
-const getToken = () => window.localStorage.getItem(TOKEN_KEY)
+const getToken = (): (string | null) => window.localStorage.getItem(TOKEN_KEY)
 
 const handleUserResponse = ({ data: user }: {data: User}) => {
   window.localStorage.setItem(TOKEN_KEY, user.token || '')

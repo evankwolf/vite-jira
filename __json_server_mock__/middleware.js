@@ -34,8 +34,23 @@ const handleRegister = (req, res) => {
 
 const handleMismatch = (req, res) => res.status(404).json(new Res(`没有这个请求路径噢${req.path}`, 1))
 
+const whiteList = ['/login', '/register']
+const handleAuthorize = (req, res) => {
+  if (whiteList.indexOf(req.path) !== -1)  return true 
+  const token = req.header('Authorization')
+  if (!token) {
+    return false
+  }
+  return true
+}
+
+
 module.exports = (req, res, next) => {
   res.setHeader('X-Hello', 'World')
+  const auth = handleAuthorize(req, res)
+  if (!auth) {
+    return res.status(401).json(new Res(`token不存在或者无效`, 1))
+  }
   if (req.method === 'POST') {
     if (req.path === '/login') return handleLogin(req, res)
     if (req.path === '/register') return handleRegister(req, res)

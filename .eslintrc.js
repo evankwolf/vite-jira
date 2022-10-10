@@ -109,6 +109,7 @@ module.exports = {
     "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/no-unused-vars": 1,
     "object-curly-spacing": ["error", "always"],
+    "prefer-promise-reject-errors": 1,
   },
   globals: {
     gtag: true,
