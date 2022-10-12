@@ -7,7 +7,7 @@ const AuthenticatedApp = () => {
   return (
     <div className="authenticated-app">
       <div>{ user ? `Hello! ${user.name}` : '' }</div>
-      <button type="button" onClick={() => logout}>登出</button>
+      <button type="button" onClick={() => logout()}>登出</button>
       <ProjectList />
     </div>
   )

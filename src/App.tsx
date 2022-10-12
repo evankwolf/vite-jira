@@ -7,9 +7,21 @@ import UnauthenticatedApp from './screens/unauthenticated-app'
 // import {SearchPanel} from './screens/project-list/search-panel'
 import './App.css'
 import { useAuth } from './context/auth-context'
+import { useMount } from './utils'
+import { getToken } from './auth-provider'
+import http from './utils/http'
 
 function App() {
-  const { user } = useAuth()
+  const { user, setUser } = useAuth()
+  useMount(() => {
+    const token = getToken()
+    const config = { token: `${token}`, method: 'POST' }
+    if (token) {
+      http('/me', config).then(res => {
+        setUser(res.data)
+      })
+    }
+  })
   return (
     <div className="App">
       {/* <TryUseArray /> */}

@@ -12,7 +12,8 @@ const AuthContext = React.createContext<{
   user: User | null,
   login: (form: AuthForm) => Promise<User | null>,
   register: (form: AuthForm) => Promise<{code: number}>,
-  logout: (form: AuthForm) => Promise<void>,
+  logout: () => Promise<void>,
+  setUser: React.Dispatch<React.SetStateAction<User | null>>
 } | undefined>(undefined)
 AuthContext.displayName = 'AuthContext'
 
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }: {children: ReactNode}) => {
   const logout = () => auth.logout().then(() => setUser(null))
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  return <AuthContext.Provider children={children} value={{ user, login, register, logout }} />
+  return <AuthContext.Provider children={children} value={{ user, login, register, logout, setUser }} />
 }
 
 export const useAuth = () => {

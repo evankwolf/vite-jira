@@ -2,6 +2,22 @@ const jwt = require('jsonwebtoken')
 const db = require('./db.json')
 const Res = require('./model')
 
+const handleMe = (req, res) => {
+  const token = req.header('Authorization')
+  if (!token) return res.status(405).json(new Res('没有token', 1))
+  const data = jwt.decode(token.slice(7), 'wuhu')
+  if (data.id) {
+    const user = db.users.find(user => user.id === data.id)
+    return res.status(200).json(new Res({ ...user, token }))
+  }
+  console.log('handleMe', data, token.slice(7))
+  // if (curUser) {
+
+  //   return res.status(200).json(new Res({ ...userInfo, token }))
+  // }
+  // return res.status(400).json(new Res('没有这个用户', 1))
+}
+
 const handleLogin = (req, res) => {
   const { username, password } = req.body
   const curUser = db.accounts.find(ac => ac.username === username)
@@ -26,9 +42,9 @@ const handleRegister = (req, res) => {
   }
   const id = db.users.length + 1
   const user = { id, name: username }
-  db.accounts.push({ username, password })
-  db.users.push(user)
   const token = jwt.sign(user, 'wuhu')
+  db.accounts.push({ username, password })
+  db.users.push({ ...user, token })
   return res.status(200).json(new Res({ ...user, token }))
 }
 
@@ -52,6 +68,7 @@ module.exports = (req, res, next) => {
     return res.status(401).json(new Res(`token不存在或者无效`, 1))
   }
   if (req.method === 'POST') {
+    if (req.path === '/me') return handleMe(req, res)
     if (req.path === '/login') return handleLogin(req, res)
     if (req.path === '/register') return handleRegister(req, res)
     handleMismatch(req, res)

@@ -2,10 +2,10 @@ import type { User } from "./screens/project-list/search-panel"
 
 const TOKEN_KEY = '__auth_provider_token__'
 const apiUrl = import.meta.env.VITE_APP_API_URL
-const getToken = (): (string | null) => window.localStorage.getItem(TOKEN_KEY)
+const getToken = (): (string | null) => localStorage.getItem(TOKEN_KEY)
 
 const handleUserResponse = ({ data: user }: {data: User}) => {
-  window.localStorage.setItem(TOKEN_KEY, user.token || '')
+  localStorage.setItem(TOKEN_KEY, user.token || '')
   return user
 }
 
@@ -46,7 +46,8 @@ const register = (data: {username: string, password: string}) => {
 }
 
 const logout = async () => {
-  window.localStorage.removeItem(TOKEN_KEY)
+  localStorage.removeItem(TOKEN_KEY)
+  return true
   // const params = {
   //   method: 'POST',
   //   headers: {
